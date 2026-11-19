@@ -1,0 +1,8 @@
+*.bak
+*.zip
+*.nov19-*
+theme-bak/
+.DS_Store
+node_modules/
+wp-config.php
+.env
