@@ -9,7 +9,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TICK_BLOOM_VERSION', '1.0.8' );
+define( 'TICK_BLOOM_VERSION', '2.0.0-dev' );
+
+// Pinterest profile for the footer button. Leave empty to hide the button.
+if ( ! defined( 'TB_PINTEREST_URL' ) ) {
+	define( 'TB_PINTEREST_URL', '' );
+}
+
+require_once get_template_directory() . '/inc/tb-art.php';
 
 function tick_bloom_setup() {
 	add_theme_support( 'title-tag' );
@@ -38,10 +45,20 @@ add_action( 'after_setup_theme', 'tick_bloom_setup' );
 
 function tick_bloom_assets() {
 	$uri = get_template_directory_uri();
-	wp_enqueue_style( 'tick-bloom-fonts', $uri . '/assets/fonts/fonts.css', array(), TICK_BLOOM_VERSION );
-	wp_enqueue_style( 'tick-bloom-style', $uri . '/assets/css-theme.css', array( 'tick-bloom-fonts' ), TICK_BLOOM_VERSION );
-	// style.css holds only the theme header (no CSS rules), so it is not loaded.
-	wp_enqueue_script( 'tick-bloom-main', $uri . '/assets/js/main.js', array(), TICK_BLOOM_VERSION, true );
+	$tb_deps = array();
+
+	// Inner pages (articles, About, Contact, Free Printables) still use the
+	// previous stylesheet for their content until each one is redesigned.
+	if ( ! is_front_page() ) {
+		wp_enqueue_style( 'tick-bloom-fonts', $uri . '/assets/fonts/fonts.css', array(), TICK_BLOOM_VERSION );
+		wp_enqueue_style( 'tick-bloom-style', $uri . '/assets/css-theme.css', array( 'tick-bloom-fonts' ), TICK_BLOOM_VERSION );
+		wp_enqueue_script( 'tick-bloom-main', $uri . '/assets/js/main.js', array(), TICK_BLOOM_VERSION, true );
+		$tb_deps = array( 'tick-bloom-style' ); // New header and footer rules load last.
+	}
+
+	// 2026 redesign: header, footer and homepage. Loaded on every page.
+	wp_enqueue_style( 'tick-bloom-tb', $uri . '/assets/tb/tb.css', $tb_deps, TICK_BLOOM_VERSION );
+	wp_enqueue_script( 'tick-bloom-tb', $uri . '/assets/tb/tb.js', array(), TICK_BLOOM_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'tick_bloom_assets' );
 
@@ -49,7 +66,7 @@ add_action( 'wp_enqueue_scripts', 'tick_bloom_assets' );
 function tick_bloom_head_extras() {
 	$uri = get_template_directory_uri();
 	echo '<link rel="icon" type="image/png" href="' . esc_url( $uri . '/assets/img/favicon.png' ) . '">' . "\n";
-	echo '<meta name="theme-color" content="#FBF8F3">' . "\n";
+	echo '<meta name="theme-color" content="#FFFFFF">' . "\n";
 }
 add_action( 'wp_head', 'tick_bloom_head_extras', 5 );
 

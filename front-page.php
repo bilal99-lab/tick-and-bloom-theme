@@ -1,394 +1,240 @@
 <?php
 /**
- * Homepage template.
+ * Homepage template (2026 redesign).
  *
  * @package Tick_Bloom
  */
 get_header();
+
+$c   = tb_colors();
+$lib = tb_library();
+
+$fan = array(
+	array( 'Monthly habit tracker', 'Up to 8 habits, 31 days', 'habit', $c['mint'] ),
+	array( '75 Soft tracker', '75 days, 4 daily rules', 'soft', $c['coral'] ),
+	array( 'My morning routine', 'For kids to tick alone', 'kids', $c['lemon'] ),
+	array( 'Weekly meal planner', 'Meals plus grocery list', 'meal', $c['lilac'] ),
+	array( 'One habit, one year', '365 days on one page', 'year', $c['mint'] ),
+);
+
+$cats = array(
+	array( 'habits', 'Habits', '14 printables', $c['mint'], 'habit', true ),
+	array( 'challenges', 'Challenges', '6 printables', $c['coral'], 'soft', false ),
+	array( 'kids', 'Kids', '9 printables', $c['lemon'], 'kids', false ),
+	array( 'home', 'Meals and money', '11 printables', $c['lilac'], 'meal', true ),
+	array( 'year', 'Yearly and planners', '4 printables', $c['sky'], 'year', false ),
+);
+
+$marquee = array( 'Habit trackers', '75 Soft', 'Kids routines', 'Meal planners', 'Budget sheets', '66-day challenge', 'Yearly trackers', 'Student planners' );
+$mcol    = array( $c['mint'], $c['coral'], $c['lemon'], $c['lilac'] );
 ?>
 
-    <!-- Creative Boutique Hero Section -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="container hero-container">
-        <div class="hero-grid">
-          <div class="hero-text-col">
-            <div class="hero-eyebrow-chip">
-              <span class="chip-sparkle">✦</span>
-              <span>Quiet Tools for Mindful Living</span>
-              <span class="chip-sparkle">✦</span>
-            </div>
-            <h1 id="hero-title" class="hero-title">
-              Small habits, <br>
-              <em class="hero-title-accent">beautifully</em> tracked.
-            </h1>
-            <p class="hero-sub">
-              Free printable habit trackers, sleep logs, and wellness planners crafted with generous line heights and restful typography. Print at home and nurture steady, gentle growth &mdash; one tick at a time.
-            </p>
-            <div class="hero-action-group">
-              <a href="<?php echo esc_url( home_url( '/free-printables/' ) ); ?>" class="btn btn-primary hero-btn-main">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                <span>Get free printables</span>
-              </a>
-              <a href="#how-it-works" class="btn btn-secondary hero-btn-sub">
-                <span>How it works</span>
-                <span class="btn-arrow" aria-hidden="true">&darr;</span>
-              </a>
-            </div>
-            <div class="hero-trust-row">
-              <div class="hero-trust-pill">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>100% Free Forever</span>
-              </div>
-              <div class="hero-trust-pill">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>No Email Required</span>
-              </div>
-              <div class="hero-trust-pill">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>A4 &amp; US Letter</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="hero-visual-col">
-            <div class="hero-stationery-stage">
-              <div class="hero-brass-clip" aria-hidden="true"></div>
-              <div class="hero-paper-frame">
-                <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/habit-tracker-preview-800.webp" srcset="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/habit-tracker-preview-600.webp 600w, <?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/habit-tracker-preview-800.webp 800w, <?php echo esc_url( get_template_directory_uri() ); ?>/assets/img/habit-tracker-preview-1200.webp 1200w" sizes="(max-width: 768px) 100vw, 440px" alt="Aesthetic lifestyle flatlay photo of Habit Tracker printable page on wooden desk with tea and eucalyptus" class="hero-paper-img" width="800" height="600" fetchpriority="high">
-              </div>
-              <div class="hero-floating-badge" aria-hidden="true">
-                <div class="floating-badge-icon">🌿</div>
-                <div class="floating-badge-text">
-                  <strong>Print-Ready PDF</strong>
-                  <span>Instant direct download</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+<section class="tb-hero tb-grid-bg" aria-labelledby="hero-title">
+  <div class="tb-wrap tb-hero__inner">
+    <div class="tb-hero__text">
+      <a class="tb-pill" href="<?php echo esc_url( home_url( '/yearly-habit-tracker-printable/' ) ); ?>"><span class="tb-pill__tag">New</span><?php esc_html_e( 'Yearly habit tracker for 2027 is out', 'tick-bloom' ); ?></a>
+      <h1 id="hero-title" class="tb-hero__title">Print it.<br>Tick it.<br><span class="tb-hl">Watch it bloom.</span></h1>
+      <p class="tb-hero__lead"><?php esc_html_e( "Free printable trackers and planners for habits, kids' routines, meals and money. One page, a pen, and a tick every day.", 'tick-bloom' ); ?></p>
+      <div class="tb-hero__ctas">
+        <a class="tb-btn tb-btn--blue tb-btn--lg" href="#library"><?php esc_html_e( 'Pick a printable', 'tick-bloom' ); ?></a>
+        <a class="tb-btn tb-btn--lemon tb-btn--lg" href="#challenge"><?php esc_html_e( 'Start the 66-day challenge', 'tick-bloom' ); ?></a>
       </div>
-    </section>
+      <ul class="tb-hero__chips">
+        <?php foreach ( array( 'Always free', 'No sign-up', 'A4 and US Letter' ) as $chip ) : ?>
+        <li><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><rect x="1" y="1" width="16" height="16" rx="4.5" fill="#fff" stroke="#1B2340" stroke-width="1.6"/><path d="M5 9.3l2.6 2.6L13 6.3" fill="none" stroke="#2F5BFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><?php echo esc_html( $chip ); ?></li>
+        <?php endforeach; ?>
+      </ul>
+    </div>
 
-    <!-- Trust Strip -->
-    <section class="trust-strip" aria-label="Brand trust features">
-      <div class="container">
-        <div class="trust-strip-inner">
-          <div class="trust-item">
-            <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            <span>100% free, forever</span>
-          </div>
-          <div class="trust-item">
-            <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-            <span>Print-ready A4 &amp; US Letter</span>
-          </div>
-          <div class="trust-item">
-            <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <span>Made to be actually used</span>
-          </div>
+    <div class="tb-hero__art">
+      <div class="tb-fan" role="group" aria-label="<?php esc_attr_e( 'Preview printables', 'tick-bloom' ); ?>">
+        <?php foreach ( $fan as $i => $s ) : ?>
+        <button type="button" class="tb-fan__sheet tb-pos-<?php echo (int) $i; ?>" data-i="<?php echo (int) $i; ?>" aria-pressed="<?php echo 0 === $i ? 'true' : 'false'; ?>" aria-label="<?php echo esc_attr( 'Show the ' . $s[0] ); ?>">
+          <span class="tb-tape" style="background:<?php echo esc_attr( $s[3] ); ?>"></span>
+          <span class="tb-fan__title"><?php echo esc_html( $s[0] ); ?></span>
+          <span class="tb-fan__sub"><?php echo esc_html( $s[1] ); ?></span>
+          <span aria-hidden="true"><?php echo tb_sheet_rows( $s[2], 1.1, $s[3] ); // phpcs:ignore WordPress.Security.EscapeOutput -- built from fixed values. ?></span>
+        </button>
+        <?php endforeach; ?>
+
+        <div class="tb-sticker" aria-hidden="true">
+          <svg class="tb-spin" viewBox="0 0 128 128" width="128" height="128"><defs><path id="tbc" d="M64 64m-46 0a46 46 0 1 1 92 0a46 46 0 1 1 -92 0"/></defs><circle cx="64" cy="64" r="62" fill="#FFE45C" stroke="#1B2340" stroke-width="2.5"/><text font-family="Sora, sans-serif" font-size="12.5" font-weight="700" fill="#1B2340" letter-spacing="2.2"><textPath href="#tbc">ALWAYS FREE &#10022; PRINT AT HOME &#10022; NO SIGN-UP &#10022;</textPath></text></svg>
+          <svg class="tb-sticker__tick" viewBox="0 0 40 40" width="40" height="40"><path d="M9 21l7.5 7.5L31 13" fill="none" stroke="#1B2340" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
+        <div class="tb-streak" aria-hidden="true">
+          <span class="tb-streak__top"><span>Water streak</span><span class="tb-blue">19 days</span></span>
+          <span class="tb-streak__bar"><span></span></span>
+        </div>
+        <span class="tb-hand" aria-hidden="true">tap a sheet</span>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- Free Printables Grid (5 Cards) -->
-    <section class="section" id="printables" aria-labelledby="printables-heading">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">FREE PRINTABLE COLLECTION</span>
-          <h2 id="printables-heading">Calm planners for your everyday rhythm</h2>
-          <p>Every printable is formatted for home printing on A4 or Letter paper. Instant direct PDF download &mdash; no email sign-up required.</p>
-        </div>
+<div class="tb-marquee" aria-hidden="true">
+  <div class="tb-marquee__track">
+    <?php for ( $loop = 0; $loop < 2; $loop++ ) : foreach ( $marquee as $mi => $m ) : ?>
+    <span class="tb-marquee__item"><?php echo esc_html( $m ); ?><span class="tb-marquee__dot" style="background:<?php echo esc_attr( $mcol[ $mi % 4 ] ); ?>"></span></span>
+    <?php endforeach; endfor; ?>
+  </div>
+</div>
 
-        <div class="cards-grid">
-          <!-- Card 1: Habit Tracker -->
-          <article class="card">
-            <div class="card-media">
-              <span class="card-washi-tape">Start here</span>
-              <img src="https://tickandbloom.com/wp-content/uploads/2026/10/habit-tracker-v2-a4-pdf-724x1024.jpg" alt="Preview of the Habit Tracker printable pack" class="card-img" width="724" height="1024" loading="lazy" data-pin-description="Free Habit Tracker printable PDF pack. A calm monthly tracker with daily tick circles and a weekly water tracker strip. Prints on A4 or US Letter.">
-              <a href="#" class="pin-button" aria-label="Save Habit Tracker on Pinterest">
-                <svg class="pin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.08 3.16 9.42 7.63 11.17-.11-.95-.2-2.4.04-3.44l1.46-6.19s-.37-.75-.37-1.85c0-1.74 1.01-3.04 2.27-3.04 1.07 0 1.59.8 1.59 1.77 0 1.08-.69 2.69-1.04 4.19-.3 1.25.63 2.27 1.86 2.27 2.24 0 3.96-2.36 3.96-5.76 0-3.02-2.17-5.13-5.27-5.13-3.59 0-5.7 2.69-5.7 5.48 0 1.08.42 2.25.94 2.88.1.13.12.24.09.37l-.35 1.43c-.06.24-.19.29-.44.18-1.63-.76-2.65-3.14-2.65-5.06 0-4.12 3-7.9 8.65-7.9 4.54 0 8.07 3.24 8.07 7.56 0 4.51-2.84 8.14-6.79 8.14-1.33 0-2.57-.69-3-1.51l-.82 3.12c-.3 1.15-1.11 2.59-1.65 3.47C9.37 23.8 10.65 24 12 24c6.63 0 12-5.37 12-12S18.63 0 12 0z"/></svg>
-                <span>Pin it</span>
-              </a>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">Habit Tracker</h3>
-              <p class="card-desc">Build gentle daily habits, one tick at a time. Includes a weekly water tracker strip.</p>
-              <div class="card-actions">
-                <a href="https://tickandbloom.com/wp-content/uploads/2026/10/habit-tracker-v2-letter.pdf" class="btn btn-primary" download="habit-tracker-v2-letter.pdf">Download US Letter</a> <a href="https://tickandbloom.com/wp-content/uploads/2026/10/habit-tracker-v2-a4.pdf" class="btn btn-primary" download="habit-tracker-v2-a4.pdf">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  <span>Download A4</span>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 2: Morning Routine Checklist -->
-          <article class="card">
-            <div class="card-media">
-              <span class="card-washi-tape">🌅 Morning Routine</span>
-              <img src="https://tickandbloom.com/wp-content/uploads/2026/10/morning-routine-checklist-v2-a4-pdf-724x1024.jpg" alt="Preview of the Morning Routine Checklist printable pack" class="card-img" width="724" height="1024" loading="lazy" data-pin-description="Free Morning Routine Checklist printable PDF pack. A gentle morning checklist with sample times, plus a full week grid. Prints on A4 or US Letter.">
-              <a href="#" class="pin-button" aria-label="Save Morning Routine Checklist on Pinterest">
-                <svg class="pin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.08 3.16 9.42 7.63 11.17-.11-.95-.2-2.4.04-3.44l1.46-6.19s-.37-.75-.37-1.85c0-1.74 1.01-3.04 2.27-3.04 1.07 0 1.59.8 1.59 1.77 0 1.08-.69 2.69-1.04 4.19-.3 1.25.63 2.27 1.86 2.27 2.24 0 3.96-2.36 3.96-5.76 0-3.02-2.17-5.13-5.27-5.13-3.59 0-5.7 2.69-5.7 5.48 0 1.08.42 2.25.94 2.88.1.13.12.24.09.37l-.35 1.43c-.06.24-.19.29-.44.18-1.63-.76-2.65-3.14-2.65-5.06 0-4.12 3-7.9 8.65-7.9 4.54 0 8.07 3.24 8.07 7.56 0 4.51-2.84 8.14-6.79 8.14-1.33 0-2.57-.69-3-1.51l-.82 3.12c-.3 1.15-1.11 2.59-1.65 3.47C9.37 23.8 10.65 24 12 24c6.63 0 12-5.37 12-12S18.63 0 12 0z"/></svg>
-                <span>Pin it</span>
-              </a>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">Morning Routine Checklist</h3>
-              <p class="card-desc">A gentle morning checklist with sample times, plus a full week grid.</p>
-              <div class="card-actions">
-                <a href="https://tickandbloom.com/wp-content/uploads/2026/10/morning-routine-checklist-v2-letter.pdf" class="btn btn-primary" download="morning-routine-checklist-v2-letter.pdf">Download US Letter</a> <a href="https://tickandbloom.com/wp-content/uploads/2026/10/morning-routine-checklist-v2-a4.pdf" class="btn btn-primary" download="morning-routine-checklist-v2-a4.pdf">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  <span>Download A4</span>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 3: Sleep Log -->
-          <article class="card">
-            <div class="card-media">
-              <span class="card-washi-tape">🌙 Bedtime Ritual</span>
-              <img src="https://tickandbloom.com/wp-content/uploads/2026/10/sleep-log-v2-a4-pdf-724x1024.jpg" alt="Preview of the Sleep Log printable pack" class="card-img" width="724" height="1024" loading="lazy" data-pin-description="Free Sleep Log printable PDF pack. Log bedtime, wake time and sleep quality for 31 nights. Prints on A4 or US Letter.">
-              <a href="#" class="pin-button" aria-label="Save Sleep Log on Pinterest">
-                <svg class="pin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.08 3.16 9.42 7.63 11.17-.11-.95-.2-2.4.04-3.44l1.46-6.19s-.37-.75-.37-1.85c0-1.74 1.01-3.04 2.27-3.04 1.07 0 1.59.8 1.59 1.77 0 1.08-.69 2.69-1.04 4.19-.3 1.25.63 2.27 1.86 2.27 2.24 0 3.96-2.36 3.96-5.76 0-3.02-2.17-5.13-5.27-5.13-3.59 0-5.7 2.69-5.7 5.48 0 1.08.42 2.25.94 2.88.1.13.12.24.09.37l-.35 1.43c-.06.24-.19.29-.44.18-1.63-.76-2.65-3.14-2.65-5.06 0-4.12 3-7.9 8.65-7.9 4.54 0 8.07 3.24 8.07 7.56 0 4.51-2.84 8.14-6.79 8.14-1.33 0-2.57-.69-3-1.51l-.82 3.12c-.3 1.15-1.11 2.59-1.65 3.47C9.37 23.8 10.65 24 12 24c6.63 0 12-5.37 12-12S18.63 0 12 0z"/></svg>
-                <span>Pin it</span>
-              </a>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">Sleep Log</h3>
-              <p class="card-desc">Log bedtime, wake time and sleep quality for 31 nights.</p>
-              <div class="card-actions">
-                <a href="https://tickandbloom.com/wp-content/uploads/2026/10/sleep-log-v2-letter.pdf" class="btn btn-primary" download="sleep-log-v2-letter.pdf">Download US Letter</a> <a href="https://tickandbloom.com/wp-content/uploads/2026/10/sleep-log-v2-a4.pdf" class="btn btn-primary" download="sleep-log-v2-a4.pdf">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  <span>Download A4</span>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 4: Mood Tracker -->
-          <article class="card">
-            <div class="card-media">
-              <span class="card-washi-tape">🌸 Daily Mood</span>
-              <img src="https://tickandbloom.com/wp-content/uploads/2026/10/mood-tracker-v2-a4-pdf-724x1024.jpg" alt="Preview of the Mood Tracker printable pack" class="card-img" width="724" height="1024" loading="lazy" data-pin-description="Free Mood Tracker printable PDF pack. Colour in your mood each day with a simple 5-colour key. Prints on A4 or US Letter.">
-              <a href="#" class="pin-button" aria-label="Save Mood Tracker on Pinterest">
-                <svg class="pin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.08 3.16 9.42 7.63 11.17-.11-.95-.2-2.4.04-3.44l1.46-6.19s-.37-.75-.37-1.85c0-1.74 1.01-3.04 2.27-3.04 1.07 0 1.59.8 1.59 1.77 0 1.08-.69 2.69-1.04 4.19-.3 1.25.63 2.27 1.86 2.27 2.24 0 3.96-2.36 3.96-5.76 0-3.02-2.17-5.13-5.27-5.13-3.59 0-5.7 2.69-5.7 5.48 0 1.08.42 2.25.94 2.88.1.13.12.24.09.37l-.35 1.43c-.06.24-.19.29-.44.18-1.63-.76-2.65-3.14-2.65-5.06 0-4.12 3-7.9 8.65-7.9 4.54 0 8.07 3.24 8.07 7.56 0 4.51-2.84 8.14-6.79 8.14-1.33 0-2.57-.69-3-1.51l-.82 3.12c-.3 1.15-1.11 2.59-1.65 3.47C9.37 23.8 10.65 24 12 24c6.63 0 12-5.37 12-12S18.63 0 12 0z"/></svg>
-                <span>Pin it</span>
-              </a>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">Mood Tracker</h3>
-              <p class="card-desc">Colour in your mood each day and spot patterns across the month.</p>
-              <div class="card-actions">
-                <a href="https://tickandbloom.com/wp-content/uploads/2026/10/mood-tracker-v2-letter.pdf" class="btn btn-primary" download="mood-tracker-v2-letter.pdf">Download US Letter</a> <a href="https://tickandbloom.com/wp-content/uploads/2026/10/mood-tracker-v2-a4.pdf" class="btn btn-primary" download="mood-tracker-v2-a4.pdf">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  <span>Download A4</span>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 5: Weekly Planner -->
-          <article class="card">
-            <div class="card-media">
-              <span class="card-washi-tape">🗓 Weekly Planning</span>
-              <img src="https://tickandbloom.com/wp-content/uploads/2026/10/weekly-planner-a4-pdf-724x1024.jpg" alt="Preview of the Weekly Planner printable pack" class="card-img" width="724" height="1024" loading="lazy" data-pin-description="Free Weekly Planner printable PDF pack. See your whole week at a glance with top 3 priorities and a weekly focus line. Prints on A4 or US Letter.">
-              <a href="#" class="pin-button" aria-label="Save Weekly Planner on Pinterest">
-                <svg class="pin-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.08 3.16 9.42 7.63 11.17-.11-.95-.2-2.4.04-3.44l1.46-6.19s-.37-.75-.37-1.85c0-1.74 1.01-3.04 2.27-3.04 1.07 0 1.59.8 1.59 1.77 0 1.08-.69 2.69-1.04 4.19-.3 1.25.63 2.27 1.86 2.27 2.24 0 3.96-2.36 3.96-5.76 0-3.02-2.17-5.13-5.27-5.13-3.59 0-5.7 2.69-5.7 5.48 0 1.08.42 2.25.94 2.88.1.13.12.24.09.37l-.35 1.43c-.06.24-.19.29-.44.18-1.63-.76-2.65-3.14-2.65-5.06 0-4.12 3-7.9 8.65-7.9 4.54 0 8.07 3.24 8.07 7.56 0 4.51-2.84 8.14-6.79 8.14-1.33 0-2.57-.69-3-1.51l-.82 3.12c-.3 1.15-1.11 2.59-1.65 3.47C9.37 23.8 10.65 24 12 24c6.63 0 12-5.37 12-12S18.63 0 12 0z"/></svg>
-                <span>Pin it</span>
-              </a>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">Weekly Planner</h3>
-              <p class="card-desc">See your whole week at a glance &mdash; top 3 priorities and one gentle focus.</p>
-              <div class="card-actions">
-                <a href="https://tickandbloom.com/wp-content/uploads/2026/10/weekly-planner-letter.pdf" class="btn btn-primary" download="weekly-planner-letter.pdf">Download US Letter</a> <a href="https://tickandbloom.com/wp-content/uploads/2026/10/weekly-planner-a4.pdf" class="btn btn-primary" download="weekly-planner-a4.pdf">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  <span>Download A4</span>
-                </a>
-              </div>
-            </div>
-          </article>
-        </div>
+<section id="library" class="tb-library" aria-labelledby="lib-title">
+  <div class="tb-wrap">
+    <div class="tb-section-head">
+      <div>
+        <h2 id="lib-title" class="tb-h2"><?php esc_html_e( 'What are you working on?', 'tick-bloom' ); ?></h2>
+        <p class="tb-lead"><?php esc_html_e( 'Pick a goal. Every printable comes with a short guide on how to use it.', 'tick-bloom' ); ?></p>
       </div>
-    </section>
+      <form class="tb-search" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+        <label class="tb-sr" for="tb-search-input"><?php esc_html_e( 'Search printables', 'tick-bloom' ); ?></label>
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="8" cy="8" r="5.5" fill="none" stroke="#1B2340" stroke-width="2"/><path d="M12.2 12.2L16 16" stroke="#1B2340" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="tb-search-input" type="search" name="s" placeholder="<?php esc_attr_e( 'Search printables', 'tick-bloom' ); ?>">
+      </form>
+    </div>
 
-    <!-- How It Works (#how-it-works, 3 Steps) -->
-    <section class="section section-sm how-it-works-section" id="how-it-works" aria-labelledby="how-heading">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">SIMPLE 3-STEP RHYTHM</span>
-          <h2 id="how-heading">How it works</h2>
-          <p>No account to register, no complicated software. Just honest, peaceful paper.</p>
-        </div>
+    <div class="tb-bento" role="tablist" aria-label="<?php esc_attr_e( 'Printable categories', 'tick-bloom' ); ?>">
+      <?php foreach ( $cats as $i => $cat ) : ?>
+      <button type="button" role="tab" id="tab-<?php echo esc_attr( $cat[0] ); ?>" class="tb-tile<?php echo $cat[5] ? ' tb-tile--wide' : ''; ?><?php echo 0 === $i ? ' is-active' : ''; ?>" data-cat="<?php echo esc_attr( $cat[0] ); ?>" aria-selected="<?php echo 0 === $i ? 'true' : 'false'; ?>" aria-controls="tb-cards" style="background:<?php echo esc_attr( $cat[3] ); ?>">
+        <span class="tb-tile__label"><?php echo esc_html( $cat[1] ); ?></span>
+        <span class="tb-tile__count"><?php echo esc_html( $cat[2] ); ?></span>
+        <span class="tb-tile__sheet" aria-hidden="true"><?php echo tb_sheet_rows( $cat[4], 0.85, 'all' === $cat[0] ? $c['cobalt'] : $cat[3], 6 ); // phpcs:ignore ?></span>
+      </button>
+      <?php endforeach; ?>
+      <a class="tb-tile tb-tile--all" href="<?php echo esc_url( home_url( '/free-printables/' ) ); ?>">
+        <span class="tb-tile__label"><?php esc_html_e( 'All printables', 'tick-bloom' ); ?></span>
+        <span class="tb-tile__count"><?php esc_html_e( '40+ and counting', 'tick-bloom' ); ?></span>
+        <span class="tb-tile__sheet" aria-hidden="true"><?php echo tb_sheet_rows( 'budget', 0.85, $c['cobalt'], 6 ); // phpcs:ignore ?></span>
+      </a>
+    </div>
 
-        <div class="how-it-works-grid">
-          <div class="step-card">
-            <div class="step-wax-seal" aria-hidden="true">
-              <span class="step-seal-num">01</span>
-            </div>
-            <span class="step-pill">Choose</span>
-            <h3>Pick your tracker</h3>
-            <p>Choose the habit or rhythm you want to nurture &mdash; from bedtime stillness to daily hydration and morning calm.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-wax-seal step-seal-rose" aria-hidden="true">
-              <span class="step-seal-num">02</span>
-            </div>
-            <span class="step-pill step-pill-rose">Print</span>
-            <h3>Download &amp; print</h3>
-            <p>Save the print-ready PDF instantly with zero paywalls. Print on standard A4 or US Letter paper from any home printer.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-wax-seal step-seal-gold" aria-hidden="true">
-              <span class="step-seal-num">03</span>
-            </div>
-            <span class="step-pill step-pill-gold">Bloom</span>
-            <h3>Tick daily, bloom slowly</h3>
-            <p>Place your tracker on your bedside or desk. Mark one small tick each day and watch consistency peacefully grow.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Our Promise Band (Creative Stationery Ethos) -->
-    <section class="promise-band" aria-label="Our promise to you">
-      <div class="container">
-        <div class="promise-header">
-          <span class="eyebrow">OUR SLOW STATIONERY ETHOS</span>
-          <h2>Crafted for real life, not just Pinterest</h2>
-          <p>We believe self-care tools should be quiet, generous, and completely free of digital friction.</p>
-        </div>
-
-        <div class="promise-grid">
-          <!-- Promise 1 -->
-          <div class="promise-card">
-            <span class="promise-pill-tag">Zero Friction</span>
-            <div class="promise-wax-seal" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-            </div>
-            <h3 class="promise-title">Every printable is free</h3>
-            <p class="promise-desc">No sign-up walls, no forced email subscriptions, no credit cards, and no ugly watermarks. Download pure print-ready PDFs whenever you need a peaceful fresh start.</p>
-            <div class="promise-card-footer">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>
-              <span>100% Free Forever</span>
-            </div>
-          </div>
-
-          <!-- Promise 2 -->
-          <div class="promise-card">
-            <span class="promise-pill-tag">Thoughtful Craft</span>
-            <div class="promise-wax-seal" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-            </div>
-            <h3 class="promise-title">Designed to be used, not just pinned</h3>
-            <p class="promise-desc">Generous line heights, practical 15mm clipboard margins, and ink-friendly botanical typography that looks beautiful on paper without exhausting your printer cartridge.</p>
-            <div class="promise-card-footer">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>
-              <span>Optimised for Home Ink</span>
-            </div>
-          </div>
-
-          <!-- Promise 3 -->
-          <div class="promise-card">
-            <span class="promise-pill-tag">Continuous Growth</span>
-            <div class="promise-wax-seal" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
-            </div>
-            <h3 class="promise-title">New printables added regularly</h3>
-            <p class="promise-desc">We continuously craft new quiet tools for mindful living, seasonal routines, and intentional daily rituals &mdash; each one thoroughly tested on real paper first.</p>
-            <div class="promise-card-footer">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>
-              <span>Slow Living Additions</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- From the Blog (3 Latest Cards) -->
-    <section class="section" aria-labelledby="blog-heading">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">READ &amp; REFLECT</span>
-          <h2 id="blog-heading">From the blog</h2>
-          <p>Gentle guides on habit psychology, restful mornings, and building sustainable daily rhythms.</p>
-        </div>
-
-        <div class="blog-grid">
-          <?php
-          $tb_latest = new WP_Query( array( 'posts_per_page' => 3, 'post_status' => 'publish' ) );
-          if ( $tb_latest->have_posts() ) :
-            while ( $tb_latest->have_posts() ) : $tb_latest->the_post();
-              $tb_cats = get_the_category();
+    <div id="tb-cards" class="tb-cards" role="tabpanel" aria-labelledby="tab-habits">
+      <?php
+      $accent = array( 'habits' => $c['mint'], 'challenges' => $c['coral'], 'kids' => $c['lemon'], 'home' => $c['lilac'], 'year' => $c['sky'] );
+      foreach ( $lib as $cat_id => $items ) :
+        foreach ( $items as $i => $p ) :
+          $col = $accent[ $cat_id ];
           ?>
-          <article class="blog-card">
-            <div class="card-media">
-              <?php if ( has_post_thumbnail() ) : ?>
-                <?php the_post_thumbnail( 'large', array( 'class' => 'card-img', 'loading' => 'lazy' ) ); ?>
-              <?php endif; ?>
-            </div>
-            <div class="blog-meta">
-              <span class="tag"><?php echo $tb_cats ? esc_html( $tb_cats[0]->name ) : ''; ?></span>
-              <span>&bull;</span>
-              <time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date( 'j F Y' ) ); ?></time>
-            </div>
-            <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-            <p><?php echo esc_html( get_the_excerpt() ); ?></p>
-            <a href="<?php the_permalink(); ?>" class="blog-card-link"><?php esc_html_e( 'Read article &rarr;', 'tick-bloom' ); ?></a>
-          </article>
+      <article class="tb-card" data-cat="<?php echo esc_attr( $cat_id ); ?>"<?php echo 'habits' !== $cat_id ? ' hidden' : ''; ?>>
+        <a class="tb-card__paper<?php echo $i % 2 ? ' is-right' : ''; ?>" href="<?php echo esc_url( home_url( $p[3] ) ); ?>" tabindex="-1" aria-hidden="true">
+          <span class="tb-tape tb-tape--left" style="background:<?php echo esc_attr( $col ); ?>"></span>
+          <span class="tb-card__ptitle"><?php echo esc_html( $p[1] ); ?></span>
+          <?php echo tb_sheet_rows( $p[4], 1, $col ); // phpcs:ignore ?>
+          <span class="tb-card__badge" style="background:<?php echo esc_attr( $col ); ?>"><?php echo esc_html( $p[5] ); ?></span>
+        </a>
+        <h3 class="tb-card__title"><a href="<?php echo esc_url( home_url( $p[3] ) ); ?>"><?php echo esc_html( $p[0] ); ?></a></h3>
+        <p class="tb-card__desc"><?php echo esc_html( $p[2] ); ?></p>
+        <a class="tb-card__link" href="<?php echo esc_url( home_url( $p[3] ) ); ?>" style="text-decoration-color:<?php echo esc_attr( $col ); ?>"><?php esc_html_e( 'Get the free PDF', 'tick-bloom' ); ?><span class="tb-sr"><?php echo esc_html( ': ' . $p[0] ); ?></span></a>
+      </article>
           <?php
-            endwhile;
-            wp_reset_postdata(); ?> <article class="blog-card"><div class="blog-meta"><span class="tag">Hydration</span><span>&bull;</span><span>Guide</span></div><h3><a href="<?php echo esc_url( home_url( '/how-to-drink-more-water-daily-tracker/' ) ); ?>">Drink More Water: A Daily Tracker for Gentle Hydration</a></h3><p>Simple, printable ways to drink more water through the day &mdash; colour in a droplet each time you finish a glass and watch your daily glasses add up.</p><a href="<?php echo esc_url( home_url( '/how-to-drink-more-water-daily-tracker/' ) ); ?>" class="blog-card-link">Read article &rarr;</a></article> <?php
-          endif;
-          ?>
-        </div>
+        endforeach;
+      endforeach;
+      ?>
+    </div>
+  </div>
+</section>
 
-        <div class="blog-more-wrap">
-          <a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>" class="btn btn-outline">Explore all blog articles</a>
+<section class="tb-steps tb-grid-bg" aria-labelledby="how-title">
+  <div class="tb-wrap">
+    <h2 id="how-title" class="tb-h2 tb-center"><?php esc_html_e( 'Three steps, zero sign-ups', 'tick-bloom' ); ?></h2>
+    <ol class="tb-steps__list">
+      <?php
+      $steps = array(
+        array( 'Pick a printable', 'Choose by goal: habits, a challenge, kids, meals or money.', $c['mint'] ),
+        array( 'Print it at home', 'A4 or US Letter, with a low-ink version for home printers.', $c['lemon'] ),
+        array( 'Tick it every day', 'Stick it where you will see it. Watch the page fill up.', $c['coral'] ),
+      );
+      foreach ( $steps as $n => $st ) :
+        ?>
+      <li class="tb-step">
+        <span class="tb-step__num" style="background:<?php echo esc_attr( $st[2] ); ?>"><?php echo (int) ( $n + 1 ); ?></span>
+        <h3><?php echo esc_html( $st[0] ); ?></h3>
+        <p><?php echo esc_html( $st[1] ); ?></p>
+      </li>
+      <?php endforeach; ?>
+    </ol>
+  </div>
+</section>
+
+<?php if ( has_action( 'tb_ad_slot' ) ) : ?>
+<aside class="tb-ad" aria-label="<?php esc_attr_e( 'Advertisement', 'tick-bloom' ); ?>">
+  <div class="tb-ad__slot tb-ad__slot--banner">
+    <?php
+    // AdSense goes here once the account is approved. The slot keeps its
+    // height before the ad loads, so the page never jumps (no layout shift).
+    do_action( 'tb_ad_slot', 'home-banner' );
+    ?>
+  </div>
+</aside>
+<?php endif; ?>
+
+<section id="challenge" class="tb-challenge" aria-labelledby="challenge-title">
+  <div class="tb-wrap tb-challenge__inner">
+    <div class="tb-challenge__big">
+      <p class="tb-66" aria-hidden="true">66</p>
+      <span class="tb-tag-rot"><?php esc_html_e( 'days to make it automatic', 'tick-bloom' ); ?></span>
+    </div>
+    <div class="tb-challenge__body">
+      <h2 id="challenge-title" class="tb-h2"><?php esc_html_e( 'The free 66-day habit challenge', 'tick-bloom' ); ?></h2>
+      <p class="tb-lead tb-ink"><?php esc_html_e( 'A University College London study found new habits took 66 days on average to feel automatic. Tap a day to see how the tracker fills up.', 'tick-bloom' ); ?></p>
+      <div class="tb-tracker">
+        <div class="tb-tracker__head"><span class="tb-tracker__day">Day <span data-tb-day>19</span> of 66</span><span class="tb-blue"><span data-tb-pct>29</span>% there</span></div>
+        <div class="tb-dots" role="group" aria-label="<?php esc_attr_e( 'Example 66-day tracker', 'tick-bloom' ); ?>">
+          <?php for ( $d = 1; $d <= 66; $d++ ) : ?>
+          <button type="button" class="tb-dot<?php echo $d <= 19 ? ' is-on' : ''; ?><?php echo 19 === $d ? ' is-last' : ''; ?>" data-day="<?php echo (int) $d; ?>" aria-label="<?php echo esc_attr( 'Day ' . $d ); ?>" aria-pressed="<?php echo $d <= 19 ? 'true' : 'false'; ?>"></button>
+          <?php endfor; ?>
         </div>
       </div>
-    </section>
+      <a class="tb-btn tb-btn--ink tb-btn--lg tb-challenge__cta" href="<?php echo esc_url( home_url( '/66-day-habit-challenge-printable/' ) ); ?>"><?php esc_html_e( 'Get the 66-day tracker', 'tick-bloom' ); ?></a>
+    </div>
+  </div>
+</section>
 
-    <!-- Pre-Footer CTA Sanctuary Card -->
-    <section class="cta-band" aria-labelledby="cta-heading">
-      <div class="container">
-        <div class="cta-sanctuary-box">
-          <div class="cta-chip-eyebrow">
-            <span>🌿</span>
-            <span>BEGIN YOUR QUIET PRACTICE</span>
-          </div>
-          <h2 id="cta-heading">Ready to start small today?</h2>
-          <p>Pick one habit that matters to you right now. Download your tracker in one click, print it out on your home printer, and take your very first step.</p>
-          <div class="cta-action-row">
-            <a href="<?php echo esc_url( home_url( '/free-printables/' ) ); ?>" class="cta-btn-primary">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              <span>Browse all free printables</span>
-            </a>
-            <a href="<?php echo esc_url( home_url( '/how-to-start-a-habit-tracker-you-will-actually-keep/' ) ); ?>" class="cta-btn-secondary">
-              <span>Read habit guide &rarr;</span>
-            </a>
-          </div>
-          <div class="cta-trust-chips">
-            <span class="cta-trust-chip">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              Instant PDF
-            </span>
-            <span class="cta-trust-chip">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              A4 &amp; Letter
-            </span>
-            <span class="cta-trust-chip">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              Zero Watermarks
-            </span>
-            <span class="cta-trust-chip">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              100% Free Forever
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
-  
+<section id="guides" class="tb-guides" aria-labelledby="guides-title">
+  <div class="tb-wrap">
+    <div class="tb-section-head">
+      <h2 id="guides-title" class="tb-h2"><?php esc_html_e( 'Guides to go with them', 'tick-bloom' ); ?></h2>
+      <a class="tb-ulink" href="<?php echo esc_url( home_url( '/blog/' ) ); ?>"><?php esc_html_e( 'All guides', 'tick-bloom' ); ?></a>
+    </div>
+    <div class="tb-guides__grid">
+      <?php
+      $chips  = array( $c['mint'], $c['coral'], $c['lemon'], $c['lilac'] );
+      $guides = get_posts(
+        array(
+          'numberposts' => 4,
+          'post_status' => 'publish',
+          'post__in'    => array_filter(
+            array_map(
+              'url_to_postid',
+              array(
+                home_url( '/how-to-start-a-habit-tracker-you-will-actually-keep/' ),
+                home_url( '/75-soft-vs-75-medium-challenge/' ),
+                home_url( '/calm-morning-routine-guide/' ),
+                home_url( '/simple-daily-mood-tracking-guide/' ),
+              )
+            )
+          ),
+          'orderby'     => 'post__in',
+        )
+      );
+      if ( ! $guides ) {
+        $guides = get_posts( array( 'numberposts' => 4, 'post_status' => 'publish' ) );
+      }
+      foreach ( $guides as $gi => $g ) :
+        $cats_g  = get_the_category( $g->ID );
+        $topic   = $cats_g ? $cats_g[0]->name : __( 'Guide', 'tick-bloom' );
+        $words   = str_word_count( wp_strip_all_tags( $g->post_content ) );
+        $minutes = max( 2, (int) round( $words / 220 ) );
+        ?>
+      <a class="tb-guide" href="<?php echo esc_url( get_permalink( $g ) ); ?>">
+        <span class="tb-chip" style="background:<?php echo esc_attr( $chips[ $gi % 4 ] ); ?>"><?php echo esc_html( $topic ); ?></span>
+        <h3><?php echo esc_html( get_the_title( $g ) ); ?></h3>
+        <span class="tb-guide__time"><?php echo esc_html( sprintf( '%d min read', $minutes ) ); ?></span>
+      </a>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+
 <?php
 get_footer();
