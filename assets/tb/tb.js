@@ -53,10 +53,9 @@
       tiles.forEach(function (o) {
         var on = o === t;
         o.classList.toggle('is-active', on);
-        o.setAttribute('aria-selected', on ? 'true' : 'false');
+        o.setAttribute('aria-pressed', on ? 'true' : 'false');
       });
       cards.forEach(function (c) { c.hidden = c.getAttribute('data-cat') !== cat; });
-      if (panel) { panel.setAttribute('aria-labelledby', t.id); }
     });
   });
 

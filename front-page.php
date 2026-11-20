@@ -93,9 +93,9 @@ $mcol    = array( $c['mint'], $c['coral'], $c['lemon'], $c['lilac'] );
       </form>
     </div>
 
-    <div class="tb-bento" role="tablist" aria-label="<?php esc_attr_e( 'Printable categories', 'tick-bloom' ); ?>">
+    <div class="tb-bento" role="group" aria-label="<?php esc_attr_e( 'Printable categories', 'tick-bloom' ); ?>">
       <?php foreach ( $cats as $i => $cat ) : ?>
-      <button type="button" role="tab" id="tab-<?php echo esc_attr( $cat[0] ); ?>" class="tb-tile<?php echo $cat[5] ? ' tb-tile--wide' : ''; ?><?php echo 0 === $i ? ' is-active' : ''; ?>" data-cat="<?php echo esc_attr( $cat[0] ); ?>" aria-selected="<?php echo 0 === $i ? 'true' : 'false'; ?>" aria-controls="tb-cards" style="background:<?php echo esc_attr( $cat[3] ); ?>">
+      <button type="button" id="tab-<?php echo esc_attr( $cat[0] ); ?>" class="tb-tile<?php echo $cat[5] ? ' tb-tile--wide' : ''; ?><?php echo 0 === $i ? ' is-active' : ''; ?>" data-cat="<?php echo esc_attr( $cat[0] ); ?>" aria-pressed="<?php echo 0 === $i ? 'true' : 'false'; ?>" aria-controls="tb-cards" style="background:<?php echo esc_attr( $cat[3] ); ?>">
         <span class="tb-tile__label"><?php echo esc_html( $cat[1] ); ?></span>
         <span class="tb-tile__count"><?php echo esc_html( $cat[2] ); ?></span>
         <span class="tb-tile__sheet" aria-hidden="true"><?php echo tb_sheet_rows( $cat[4], 0.85, 'all' === $cat[0] ? $c['cobalt'] : $cat[3], 6 ); // phpcs:ignore ?></span>
@@ -108,7 +108,7 @@ $mcol    = array( $c['mint'], $c['coral'], $c['lemon'], $c['lilac'] );
       </a>
     </div>
 
-    <div id="tb-cards" class="tb-cards" role="tabpanel" aria-labelledby="tab-habits">
+    <div id="tb-cards" class="tb-cards" aria-live="polite">
       <?php
       $accent = array( 'habits' => $c['mint'], 'challenges' => $c['coral'], 'kids' => $c['lemon'], 'home' => $c['lilac'], 'year' => $c['sky'] );
       foreach ( $lib as $cat_id => $items ) :

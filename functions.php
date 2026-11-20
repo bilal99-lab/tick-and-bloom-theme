@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TICK_BLOOM_VERSION', '2.0.0-dev' );
+define( 'TICK_BLOOM_VERSION', '2.0.1' );
 
 // Pinterest profile for the footer button. Leave empty to hide the button.
 if ( ! defined( 'TB_PINTEREST_URL' ) ) {

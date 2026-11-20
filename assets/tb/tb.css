@@ -132,7 +132,7 @@ body{margin:0;background:#fff;color:var(--tb-ink);font-family:var(--tb-body)}
 .tb-tile--wide{grid-column:span 2}
 .tb-tile--all{background:#fff}
 .tb-tile__label{position:relative;z-index:2;display:block;font-family:var(--tb-head);font-weight:800;font-size:24px;letter-spacing:-.01em}
-.tb-tile__count{position:relative;z-index:2;display:block;margin-top:4px;font-size:14px;font-weight:600;color:var(--tb-ink-2)}
+.tb-tile__count{position:relative;z-index:2;display:block;margin-top:4px;font-size:14px;font-weight:700;color:var(--tb-ink)}
 .tb-tile__sheet{position:absolute;right:20px;bottom:-34px;width:170px;height:150px;box-sizing:border-box;padding:16px 14px;background:#fff;border:2px solid var(--tb-ink);border-radius:8px;transform:rotate(-6deg)}
 .tb-tile:nth-child(even) .tb-tile__sheet{transform:rotate(6deg)}
 .tb-tile:not(.tb-tile--wide) .tb-tile__sheet{width:140px;height:120px;right:14px;bottom:-44px;padding:13px 11px;overflow:hidden}
