@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 /**
  * Fallback / archive / search template (2026 redesign).
  * One H1 for the page, each post title as H2.

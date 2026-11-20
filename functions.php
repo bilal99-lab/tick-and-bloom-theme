@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TICK_BLOOM_VERSION', '2.0.2' );
+define( 'TICK_BLOOM_VERSION', '2.0.3' );
 
 // Pinterest profile for the footer button. Leave empty to hide the button.
 if ( ! defined( 'TB_PINTEREST_URL' ) ) {
@@ -320,3 +320,21 @@ function tick_bloom_printable_shortcode( $atts ) {
 	return ob_get_clean();
 }
 add_shortcode( 'tb_printable', 'tick_bloom_printable_shortcode' );
+
+/* ==========================================================================
+ * Security headers (2026 redesign audit)
+ * ========================================================================== */
+function tick_bloom_security_headers() {
+	if ( headers_sent() ) {
+		return;
+	}
+	header_remove( 'X-Powered-By' );
+	header( 'X-Content-Type-Options: nosniff' );
+	header( 'X-Frame-Options: SAMEORIGIN' );
+	header( 'Referrer-Policy: strict-origin-when-cross-origin' );
+	header( 'Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()' );
+	if ( is_ssl() ) {
+		header( 'Strict-Transport-Security: max-age=31536000' );
+	}
+}
+add_action( 'send_headers', 'tick_bloom_security_headers' );

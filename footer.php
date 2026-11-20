@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || exit; ?>
 </main>
 
 <footer class="tb-footer">
@@ -20,6 +21,7 @@
         <nav aria-label="<?php esc_attr_e( 'Home and family', 'tick-bloom' ); ?>">
           <strong><?php esc_html_e( 'Home and family', 'tick-bloom' ); ?></strong>
           <a href="<?php echo esc_url( home_url( '/morning-routine-checklist-for-kids-printable/' ) ); ?>"><?php esc_html_e( 'Kids morning routine', 'tick-bloom' ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/chore-chart-for-kids-printable/' ) ); ?>"><?php esc_html_e( 'Kids chore chart', 'tick-bloom' ); ?></a>
           <a href="<?php echo esc_url( home_url( '/weekly-meal-planner-printable/' ) ); ?>"><?php esc_html_e( 'Weekly meal planner', 'tick-bloom' ); ?></a>
           <a href="<?php echo esc_url( home_url( '/monthly-budget-planner-printable/' ) ); ?>"><?php esc_html_e( 'Monthly budget planner', 'tick-bloom' ); ?></a>
           <a href="<?php echo esc_url( home_url( '/free-printables/' ) ); ?>"><?php esc_html_e( 'All printables', 'tick-bloom' ); ?></a>

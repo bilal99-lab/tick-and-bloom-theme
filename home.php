@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 /**
  * Blog index (/blog/), 2026 redesign.
  *

@@ -140,6 +140,7 @@ function tb_library() {
 			array( 'Morning Routine for Kids', 'My morning', 'A checklist children can tick off by themselves.', '/morning-routine-checklist-for-kids-printable/', 'kids', 'Parents love it' ),
 			array( 'Habit Tracker for Kids', 'My habits', 'Big boxes and simple goals for little hands.', '/habit-tracker-for-kids-free-printable-parents-guide/', 'kids', 'Ages 4 to 10' ),
 			array( 'Morning Routine for Teens', 'Before school', 'Fewer steps, more independence.', '/morning-routine-checklist-for-teens/', 'kids', 'Teens' ),
+			array( 'Kids Chore Chart', 'My jobs', 'Weekly chart, chores by age, a reward menu and job cards.', '/chore-chart-for-kids-printable/', 'kids', 'New' ),
 		),
 		'home'       => array(
 			array( 'Weekly Meal Planner', 'This week we eat', 'Seven days of meals with the grocery list on the same sheet.', '/weekly-meal-planner-printable/', 'meal', 'Saves time' ),
