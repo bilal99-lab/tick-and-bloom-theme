@@ -22,6 +22,23 @@ get_header();
 
 <section class="tb-fp" aria-labelledby="page-title">
   <div class="tb-wrap">
+    <h2 class="tb-h2" style="margin-bottom:8px">New this month</h2>
+    <p class="tb-lead" style="margin-bottom:24px">Our redesigned packs, each with a low-ink version.</p>
+    <div class="tb-fp-new">
+      <?php
+      $tb_new = array(
+        array( '2027-habit-tracker', '2027 Habit Tracker Pack', 'Year tracker, habit plan, monthly check-ins and a year in review. 5 pages.' ),
+        array( 'chore-chart-for-kids', 'Kids Chore Chart Pack', 'Weekly chart, chores by age, reward menu, monthly chart and job cards. 5 pages.' ),
+        array( 'kids-morning-routine-chart', 'Kids Morning Routine Pack', 'Checklist, picture cards, night-before list, 20-star chart and weekend routine. 5 pages.' ),
+        array( 'monthly-habit-tracker', 'Monthly Habit Tracker', 'Ten habits, 31 days, totals, focus habit, wins and notes.' ),
+        array( '75-soft-challenge-tracker', '75 Soft Tracker', 'All 75 days, four rules, week markers and milestone stars.' ),
+      );
+      foreach ( $tb_new as $tb_n ) {
+        echo do_shortcode( sprintf( '[tb_printable slug="%s" title="%s" text="%s" label=""]', esc_attr( $tb_n[0] ), esc_attr( $tb_n[1] ), esc_attr( $tb_n[2] ) ) ); // phpcs:ignore
+      }
+      ?>
+    </div>
+    <h2 class="tb-h2" style="margin:56px 0 24px">All printables</h2>
         <div class="printables-list">
           <!-- Printable 1: Habit Tracker -->
           <article class="printable-large-card">

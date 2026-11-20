@@ -340,3 +340,5 @@ body{margin:0;background:#fff;color:var(--tb-ink);font-family:var(--tb-body)}
 .tb-dl__btns .tb-btn{font-size:15px;padding:11px 16px}
 .tb-dl__low{font-size:14px!important;color:var(--tb-ink-2)}
 .tb-dl__low a{color:var(--tb-ink);font-weight:700}
+.tb-fp-new{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,520px),1fr));gap:0 28px}
+.tb-fp-new .article-download-box{margin:0 0 28px}
