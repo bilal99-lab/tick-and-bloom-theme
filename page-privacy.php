@@ -6,49 +6,42 @@
  */
 get_header();
 ?>
+<header class="tb-page-head tb-grid-bg">
+  <div class="tb-narrow">
+    <h1 class="tb-article__title"><?php esc_html_e( 'Privacy policy', 'tick-bloom' ); ?></h1>
+    <p class="tb-lead"><?php esc_html_e( 'Last updated: 20 November 2026', 'tick-bloom' ); ?></p>
+  </div>
+</header>
 
-    <section class="section section-sm" aria-labelledby="privacy-title">
-      <div class="container-narrow">
-        <div class="section-header">
-          <span class="eyebrow">TRANSPARENCY</span>
-          <h1 id="privacy-title">Privacy Policy</h1>
-          <p class="lead-text">Last updated: October 2026. Plain, honest, and respectful of your privacy.</p>
-        </div>
+<div class="tb-narrow tb-article__body">
+  <div class="tb-prose">
+    <h2>Who we are</h2>
+    <p>Tick &amp; Bloom (&ldquo;we&rdquo;) runs tickandbloom.com. This page explains what information we collect, why, and what you can do about it. Questions go to <a href="mailto:hello@tickandbloom.com">hello@tickandbloom.com</a>.</p>
 
-        <article class="story-box story-box-mb">
-          <h2>1. Introduction</h2>
-          <p>Tick &amp; Bloom (referred to as &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) operates <strong>tickandbloom.com</strong>. We believe your online experience should be as peaceful and unburdened as the printables we create. This policy plainly explains what information we collect, why, and how it is handled.</p>
+    <h2>Downloads</h2>
+    <p>You can download every printable without an email address or an account. The PDF files download straight to your device.</p>
 
-          <h2>2. What Data We Collect</h2>
-          <p>We believe in radical data minimisation:</p>
-          <ul>
-            <li><strong>Printable Downloads:</strong> When you download any of our free printable habit trackers, sleep logs, or planners, we do not require an email address, account registration, or any personal details. The PDF files download directly to your device.</li>
-            <li><strong>Direct Communications:</strong> If you voluntarily contact us via our contact form or send an email to <a href="mailto:hello@tickandbloom.com">hello@tickandbloom.com</a>, we collect your name, email address, and the contents of your message solely to respond to your enquiry. We never sell, rent, or share your contact details with third parties for marketing purposes.</li>
-          </ul>
+    <h2>Email</h2>
+    <p>If you email us, we use your name, email address and message only to reply. If you join our email list, we use your address to send the emails you signed up for, and every email has an unsubscribe link. We never sell or rent your details.</p>
 
-          <h2>3. Cookies &amp; Tracking Technologies</h2>
-          <p>We do not currently use any advertising trackers, third-party profiling cookies, or invasive tracking scripts. In the future, we may introduce lightweight, privacy-respecting website analytics (such as Plausible or Cloudflare Web Analytics) solely to understand aggregated page views and popular download items without tracking individuals across the web. Any future analytics implementation will be reflected here.</p>
+    <h2>Analytics</h2>
+    <p>We use Google Analytics to understand which pages and printables people use, so we know what to make next. It uses cookies and collects information such as the pages you visit, your approximate location, your device and how you reached the site. Google processes this information under its own <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">privacy policy</a>. You can block it with the <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener" target="_blank">Google Analytics opt-out add-on</a> or your browser&rsquo;s cookie settings.</p>
 
-          <h2>4. Third-Party Links &amp; Services</h2>
-          <p>Our website includes links to Pinterest (to allow visitors to save printable cards to their Pinterest boards) and fonts served via Google Fonts. When you click external links or interact with third-party platforms, their respective privacy policies govern that interaction.</p>
+    <h2>Advertising</h2>
+    <p>To keep every printable free, we may show ads served by Google AdSense. Google and its partners may use cookies to show ads based on your visits to this and other websites. You can turn off personalised ads in <a href="https://adssettings.google.com" rel="noopener" target="_blank">Google Ad Settings</a>, and read how Google uses data from sites that show its ads at <a href="https://policies.google.com/technologies/partner-sites" rel="noopener" target="_blank">policies.google.com/technologies/partner-sites</a>. Where the law requires it, we ask for your consent before these cookies are used.</p>
 
-          <h2>5. Your Rights</h2>
-          <p>Under UK GDPR and EU data protection regulations, you have the right to request access to any personal data you have sent us, or request its deletion. To exercise these rights, simply email us at <a href="mailto:hello@tickandbloom.com">hello@tickandbloom.com</a>.</p>
+    <h2>Pinterest and other links</h2>
+    <p>Some pages let you save a printable to Pinterest or link to other sites. When you use those sites, their own privacy policies apply.</p>
 
-          <h2>6. Contact Us</h2>
-          <p>If you have any questions or thoughts regarding this privacy policy, please write to us at <a href="mailto:hello@tickandbloom.com">hello@tickandbloom.com</a>.</p>
-        </article>
-      </div>
-    </section>
+    <h2>Your rights</h2>
+    <p>Depending on where you live, including the UK, the EU and some US states, you can ask to see, correct or delete personal information we hold about you, or object to how we use it. Email <a href="mailto:hello@tickandbloom.com">hello@tickandbloom.com</a> and we will reply within 30 days.</p>
 
-    <!-- CTA Band -->
-    <section class="cta-band" aria-labelledby="cta-heading">
-      <div class="container">
-        <h2 id="cta-heading">Ready to start small?</h2>
-        <p>Pick one habit that matters to you today. Download your tracker, print it out, and take your very first step.</p>
-        <a href="<?php echo esc_url( home_url( '/free-printables/' ) ); ?>" class="btn btn-white">Browse all free printables</a>
-      </div>
-    </section>
-  
+    <h2>Children</h2>
+    <p>Some printables are made for children to use, but this website is meant for parents and adults. We do not knowingly collect personal information from children.</p>
+
+    <h2>Changes</h2>
+    <p>If we change this policy, we will update the date at the top of this page.</p>
+  </div>
+</div>
 <?php
 get_footer();

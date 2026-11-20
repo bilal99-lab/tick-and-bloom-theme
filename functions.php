@@ -13,7 +13,7 @@ define( 'TICK_BLOOM_VERSION', '2.0.0-dev' );
 
 // Pinterest profile for the footer button. Leave empty to hide the button.
 if ( ! defined( 'TB_PINTEREST_URL' ) ) {
-	define( 'TB_PINTEREST_URL', '' );
+	define( 'TB_PINTEREST_URL', 'https://www.pinterest.com/tickandbloom/' );
 }
 
 require_once get_template_directory() . '/inc/tb-art.php';
@@ -45,20 +45,21 @@ add_action( 'after_setup_theme', 'tick_bloom_setup' );
 
 function tick_bloom_assets() {
 	$uri = get_template_directory_uri();
-	$tb_deps = array();
+	wp_enqueue_style( 'tick-bloom-tb', $uri . '/assets/tb/tb.css', array(), TICK_BLOOM_VERSION );
+	wp_enqueue_script( 'tick-bloom-tb', $uri . '/assets/tb/tb.js', array(), TICK_BLOOM_VERSION, array( 'in_footer' => true, 'strategy' => 'defer' ) );
 
-	// Inner pages (articles, About, Contact, Free Printables) still use the
-	// previous stylesheet for their content until each one is redesigned.
-	if ( ! is_front_page() ) {
-		wp_enqueue_style( 'tick-bloom-fonts', $uri . '/assets/fonts/fonts.css', array(), TICK_BLOOM_VERSION );
-		wp_enqueue_style( 'tick-bloom-style', $uri . '/assets/css-theme.css', array( 'tick-bloom-fonts' ), TICK_BLOOM_VERSION );
-		wp_enqueue_script( 'tick-bloom-main', $uri . '/assets/js/main.js', array(), TICK_BLOOM_VERSION, true );
-		$tb_deps = array( 'tick-bloom-style' ); // New header and footer rules load last.
+	// Pinterest "Pin it" buttons on the printables page and in articles.
+	if ( is_singular( 'post' ) || is_page_template( 'page-free-printables.php' ) ) {
+		wp_enqueue_script( 'tick-bloom-main', $uri . '/assets/js/main.js', array(), TICK_BLOOM_VERSION, array( 'in_footer' => true, 'strategy' => 'defer' ) );
 	}
 
-	// 2026 redesign: header, footer and homepage. Loaded on every page.
-	wp_enqueue_style( 'tick-bloom-tb', $uri . '/assets/tb/tb.css', $tb_deps, TICK_BLOOM_VERSION );
-	wp_enqueue_script( 'tick-bloom-tb', $uri . '/assets/tb/tb.js', array(), TICK_BLOOM_VERSION, true );
+	// The block library stylesheet is not needed: tb.css styles post content.
+	if ( ! is_admin() ) {
+		wp_dequeue_style( 'wp-block-library' );
+		wp_dequeue_style( 'wp-block-library-theme' );
+		wp_dequeue_style( 'global-styles' );
+		wp_dequeue_style( 'classic-theme-styles' );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'tick_bloom_assets' );
 
@@ -221,3 +222,53 @@ function tick_bloom_dequeue_unused() {
 	wp_dequeue_script( 'hostinger-reach-embed' );
 }
 add_action( 'wp_enqueue_scripts', 'tick_bloom_dequeue_unused', 100 );
+
+/* ==========================================================================
+ * Ads (2026 redesign)
+ * ========================================================================== */
+
+// In-article ad slot after the third paragraph of each post. It is only
+// printed once something is hooked to tb_ad_slot (for example the AdSense
+// code), so nothing empty shows before then.
+function tick_bloom_inline_ad( $content ) {
+	if ( ! is_singular( 'post' ) || ! in_the_loop() || ! is_main_query() || ! has_action( 'tb_ad_slot' ) ) {
+		return $content;
+	}
+	ob_start();
+	do_action( 'tb_ad_slot', 'in-article' );
+	$ad = trim( ob_get_clean() );
+	if ( '' === $ad ) {
+		return $content;
+	}
+	$slot  = '<div class="tb-ad-inline" aria-label="Advertisement">' . $ad . '</div>';
+	$count = 0;
+	return preg_replace_callback(
+		'#</p>#i',
+		function ( $m ) use ( &$count, $slot ) {
+			$count++;
+			return 3 === $count ? $m[0] . $slot : $m[0];
+		},
+		$content
+	);
+}
+add_filter( 'the_content', 'tick_bloom_inline_ad', 20 );
+
+/* ==========================================================================
+ * Performance: remove unused WordPress front-end extras (2026 redesign)
+ * ========================================================================== */
+function tick_bloom_trim_head() {
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
+	remove_action( 'wp_head', 'rsd_link' );
+	remove_action( 'wp_head', 'wlwmanifest_link' );
+	remove_action( 'wp_head', 'wp_generator' );
+	remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+	add_filter( 'emoji_svg_url', '__return_false' );
+}
+add_action( 'init', 'tick_bloom_trim_head' );
+
+function tick_bloom_no_embed_script() {
+	wp_dequeue_script( 'wp-embed' );
+}
+add_action( 'wp_footer', 'tick_bloom_no_embed_script' );

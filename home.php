@@ -1,48 +1,46 @@
 <?php
 /**
- * Blog index template.
+ * Blog index (/blog/), 2026 redesign.
  *
  * @package Tick_Bloom
  */
 get_header();
+$tb_chips = array( 'var(--tb-mint)', 'var(--tb-coral)', 'var(--tb-lemon)', 'var(--tb-lilac)' );
 ?>
+<header class="tb-page-head tb-grid-bg">
+  <div class="tb-wrap">
+    <h1 class="tb-article__title"><?php esc_html_e( 'Guides', 'tick-bloom' ); ?></h1>
+    <p class="tb-lead"><?php esc_html_e( 'Short, practical guides on habits, routines and planning. Each one comes with a free printable.', 'tick-bloom' ); ?></p>
+  </div>
+</header>
 
-    <section class="section section-sm" aria-labelledby="blog-index-title">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">THE MINDFUL CORNER</span>
-          <h1 id="blog-index-title">Simple guides for mindful living</h1>
-          <p class="lead-text">Practical essays on habit psychology, gentle morning routines, screen-free rest, and paper planning to support your everyday calm.</p>
-        </div>
-
-        <div class="blog-grid">
-          <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
-            $tb_cats = get_the_category(); ?>
-          <article class="blog-card">
-            <div class="card-media">
-              <?php if ( has_post_thumbnail() ) : the_post_thumbnail( 'large', array( 'class' => 'card-img', 'loading' => 'lazy' ) ); endif; ?>
-            </div>
-            <div class="blog-meta">
-              <span class="tag"><?php echo $tb_cats ? esc_html( $tb_cats[0]->name ) : ''; ?></span>
-              <span>&bull;</span>
-              <time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date( 'j F Y' ) ); ?></time>
-            </div>
-            <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-            <p><?php echo esc_html( get_the_excerpt() ); ?></p>
-            <a href="<?php the_permalink(); ?>" class="blog-card-link"><?php esc_html_e( 'Read article &rarr;', 'tick-bloom' ); ?></a>
-          </article>
-          <?php endwhile; endif; ?>
-        </div></div>
-    </section>
-
-    <!-- CTA Band -->
-    <section class="cta-band" aria-labelledby="cta-heading">
-      <div class="container">
-        <h2 id="cta-heading">Ready to start small?</h2>
-        <p>Pick one habit that matters to you today. Download your tracker, print it out, and take your very first step.</p>
-        <a href="<?php echo esc_url( home_url( '/free-printables/' ) ); ?>" class="btn btn-white">Browse all free printables</a>
-      </div>
-    </section>
-  
+<section class="tb-listing">
+  <div class="tb-wrap">
+    <?php if ( have_posts() ) : ?>
+    <div class="tb-guides__grid">
+      <?php
+      $i = 0;
+      while ( have_posts() ) :
+        the_post();
+        $c = get_the_category();
+        ?>
+      <a class="tb-guide tb-guide--post" href="<?php the_permalink(); ?>">
+        <?php if ( has_post_thumbnail() ) : ?>
+        <span class="tb-guide__img"><?php the_post_thumbnail( 'medium_large', array( 'loading' => $i < 3 ? 'eager' : 'lazy', 'decoding' => 'async' ) ); ?></span>
+        <?php endif; ?>
+        <span class="tb-chip" style="background:<?php echo esc_attr( $tb_chips[ $i % 4 ] ); ?>"><?php echo esc_html( $c ? $c[0]->name : __( 'Guide', 'tick-bloom' ) ); ?></span>
+        <h2 class="tb-guide__h"><?php the_title(); ?></h2>
+        <span class="tb-guide__excerpt"><?php echo esc_html( wp_trim_words( get_the_excerpt(), 22 ) ); ?></span>
+        <span class="tb-guide__time"><?php echo esc_html( sprintf( '%d min read', max( 2, (int) round( str_word_count( wp_strip_all_tags( get_the_content() ) ) / 220 ) ) ) ); ?></span>
+      </a>
+        <?php
+        $i++;
+      endwhile;
+      ?>
+    </div>
+    <div class="tb-pager"><?php the_posts_pagination( array( 'mid_size' => 1 ) ); ?></div>
+    <?php endif; ?>
+  </div>
+</section>
 <?php
 get_footer();
