@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TICK_BLOOM_VERSION', '2.0.1' );
+define( 'TICK_BLOOM_VERSION', '2.0.2' );
 
 // Pinterest profile for the footer button. Leave empty to hide the button.
 if ( ! defined( 'TB_PINTEREST_URL' ) ) {
@@ -272,3 +272,51 @@ function tick_bloom_no_embed_script() {
 	wp_dequeue_script( 'wp-embed' );
 }
 add_action( 'wp_footer', 'tick_bloom_no_embed_script' );
+
+/* ==========================================================================
+ * [tb_printable] shortcode: download box for printables stored in the theme
+ * (assets/printables/<slug>-a4.pdf, -letter.pdf, -a4-low-ink.pdf,
+ * -letter-low-ink.pdf and <slug>-preview.webp).
+ * Usage: [tb_printable slug="monthly-habit-tracker" title="..." text="..."]
+ * ========================================================================== */
+function tick_bloom_printable_shortcode( $atts ) {
+	$a = shortcode_atts(
+		array(
+			'slug'  => '',
+			'title' => '',
+			'text'  => '',
+			'label' => 'New design',
+		),
+		$atts,
+		'tb_printable'
+	);
+	$slug = sanitize_file_name( $a['slug'] );
+	if ( ! $slug || ! file_exists( get_template_directory() . '/assets/printables/' . $slug . '-a4.pdf' ) ) {
+		return '';
+	}
+	$base = get_template_directory_uri() . '/assets/printables/' . $slug;
+	$img  = file_exists( get_template_directory() . '/assets/printables/' . $slug . '-preview.webp' ) ? $base . '-preview.webp' : '';
+	ob_start();
+	?>
+<aside class="article-download-box tb-dl" aria-label="<?php echo esc_attr( $a['title'] ); ?>">
+	<?php if ( $img ) : ?>
+	<div class="article-download-thumb"><img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( 'Preview of the ' . $a['title'] ); ?>" width="480" height="679" loading="lazy" decoding="async"></div>
+	<?php endif; ?>
+	<div class="article-download-info">
+		<?php if ( $a['label'] ) : ?><span class="tb-chip" style="background:var(--tb-lemon)"><?php echo esc_html( $a['label'] ); ?></span><?php endif; ?>
+		<p class="tb-dl__title"><?php echo esc_html( $a['title'] ); ?></p>
+		<?php if ( $a['text'] ) : ?><p><?php echo esc_html( $a['text'] ); ?></p><?php endif; ?>
+		<p class="tb-dl__btns">
+			<a class="tb-btn tb-btn--blue" href="<?php echo esc_url( $base . '-a4.pdf' ); ?>" download><?php esc_html_e( 'Download A4', 'tick-bloom' ); ?></a>
+			<a class="tb-btn tb-btn--blue" href="<?php echo esc_url( $base . '-letter.pdf' ); ?>" download><?php esc_html_e( 'Download US Letter', 'tick-bloom' ); ?></a>
+		</p>
+		<p class="tb-dl__low"><?php esc_html_e( 'Saving ink?', 'tick-bloom' ); ?>
+			<a href="<?php echo esc_url( $base . '-a4-low-ink.pdf' ); ?>" download><?php esc_html_e( 'Low-ink A4', 'tick-bloom' ); ?></a> /
+			<a href="<?php echo esc_url( $base . '-letter-low-ink.pdf' ); ?>" download><?php esc_html_e( 'Low-ink Letter', 'tick-bloom' ); ?></a>
+		</p>
+	</div>
+</aside>
+	<?php
+	return ob_get_clean();
+}
+add_shortcode( 'tb_printable', 'tick_bloom_printable_shortcode' );
